@@ -1,5 +1,7 @@
 import { parseAbi } from "viem";
 
 export const SyncSafeABI = parseAbi([
-  "event SyncSafeCreated(address proxy, bytes data)",
+  "struct SafeCreationParams { bytes32 initializerHash; address singleton; uint96 nonce;}",
+  "struct SyncSafeParams { bytes32 initBytecodeHash; uint32[] chaindIds; SafeCreationParams creationParams;}",
+  "event SyncSafeCreated(address proxyAddress, SyncSafeParams params)",
 ]);
