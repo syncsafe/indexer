@@ -29,3 +29,14 @@ export function getSafeAddress(
     from: factory,
   });
 }
+
+export function fromEidToChainId(eid: number): number {
+  switch (eid) {
+    case 40161:
+      return 11155111;
+    case 40245:
+      return 84532;
+    default:
+      return 0;
+  }
+}
