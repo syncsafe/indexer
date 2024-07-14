@@ -41,7 +41,7 @@ export default createConfig({
     },
     SyncSafeModule: {
       abi: SyncSafeABI,
-      address: "0xCDF079Fda42849d5d78866DB0966E24eC0d0637E",
+      address: "0x48a50E6FD14Aa262FB250Be5D5f182f538516401",
       network: {
         sepolia: {
           startBlock: 6306358,
