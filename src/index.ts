@@ -63,26 +63,12 @@ ponder.on("SafeContract:ChangedThreshold", async ({ context, event }) => {
 ponder.on("SyncSafeModule:SyncSafeCreated", async ({ context, event }) => {
   const { SyncSafe, SyncSafeChainInstance } = context.db;
 
-  const bytecode = await context.client.readContract({
-    address: proxyFactoryAddress,
-    abi: SafeProxyFactoryABI,
-    functionName: "proxyCreationCode",
+  const address = await context.client.readContract({
+    address: context.contracts.SyncSafeModule.address,
+    abi: context.contracts.SyncSafeModule.abi,
+    functionName: "getAddressOnEid",
+    args: [event.args.params.creationParams, 0],
   });
-
-  const initBytecodeHash = keccak256(
-    encodePacked(
-      ["bytes", "address"],
-      [bytecode, event.args.params.creationParams.singleton],
-    ),
-  );
-
-  const address = getSafeAddress(
-    initBytecodeHash,
-    event.args.params.creationParams.initializerHash,
-    event.args.params.creationParams.nonce,
-    0,
-    proxyFactoryAddress,
-  );
 
   const instance = await SyncSafeChainInstance.update({
     id: `${event.args.proxyAddress}-${context.network.chainId}`,
@@ -109,6 +95,7 @@ ponder.on("SyncSafeModule:SyncSafeCreated", async ({ context, event }) => {
 
 ponder.on("SyncSafeModule:EmitNewState", async ({ context, event }) => {
   const { SyncSafe } = context.db;
+  // try {
   await SyncSafe.update({
     id: event.args.topLevel,
     data: {
@@ -116,4 +103,8 @@ ponder.on("SyncSafeModule:EmitNewState", async ({ context, event }) => {
       owners: event.args.owners as Address[],
     },
   });
+  // } catch (e) {
+  //   console.log(event);
+  //   console.log(e);
+  // }
 });
