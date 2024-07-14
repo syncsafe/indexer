@@ -21,6 +21,10 @@ export default createConfig({
       chainId: baseSepolia.id,
       transport: http(process.env.BASE_SEPOLIA_RPC_URL),
     },
+    arbitrumSepolia: {
+      chainId: arbitrumSepolia.id,
+      transport: http(process.env.ARBITRUM_SEPOLIA_RPC_URL),
+    },
   },
   contracts: {
     SafeContract: {
@@ -37,6 +41,9 @@ export default createConfig({
         baseSepolia: {
           startBlock: 12578150,
         },
+        arbitrumSepolia: {
+          startBlock: 63695847,
+        },
       },
     },
     SyncSafeModule: {
@@ -48,6 +55,9 @@ export default createConfig({
         },
         baseSepolia: {
           startBlock: 12578150,
+        },
+        arbitrumSepolia: {
+          startBlock: 63695847,
         },
       },
     },

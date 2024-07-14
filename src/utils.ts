@@ -36,6 +36,8 @@ export function fromEidToChainId(eid: number): number {
       return 11155111;
     case 40245:
       return 84532;
+    case 40231:
+      return 421614;
     default:
       return 0;
   }
