@@ -106,3 +106,14 @@ ponder.on("SyncSafeModule:SyncSafeCreated", async ({ context, event }) => {
     },
   });
 });
+
+ponder.on("SyncSafeModule:EmitNewState", async ({ context, event }) => {
+  const { SyncSafe } = context.db;
+  await SyncSafe.update({
+    id: event.args.topLevel,
+    data: {
+      threshold: event.args.threshold,
+      owners: event.args.owners as Address[],
+    },
+  });
+});
