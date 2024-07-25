@@ -19,14 +19,17 @@ export default createConfig({
     linea: {
       chainId: linea.id,
       transport: http(process.env.LINEA_RPC_URL),
+      pollingInterval: 4_000
     },
     base: {
       chainId: base.id,
       transport: http(process.env.BASE_RPC_URL),
+      pollingInterval: 4_000
     },
     arbitrum: {
       chainId: arbitrum.id,
       transport: http(process.env.ARBITRUM_RPC_URL),
+      pollingInterval: 4_000
     },
   },
   contracts: {
