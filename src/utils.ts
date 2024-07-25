@@ -5,6 +5,7 @@ import {
   getContractAddress,
   keccak256,
 } from "viem";
+import { arbitrum, base, linea } from "viem/chains";
 
 export function getSafeAddress(
   initBytecodeHash: Hex,
@@ -32,12 +33,12 @@ export function getSafeAddress(
 
 export function fromEidToChainId(eid: number): number {
   switch (eid) {
-    case 40161:
-      return 11155111;
-    case 40245:
-      return 84532;
-    case 40231:
-      return 421614;
+    case 30110:
+      return arbitrum.id;
+    case 30184:
+      return base.id;
+    case 30183:
+      return linea.id;
     default:
       return 0;
   }
